@@ -42,7 +42,7 @@ class PlayerConfig(private val plugin: Ezblocks) {
 
         if (broken < 1) return
 
-        plugin.
+        //TODO finish this stuff
 
     }
 
