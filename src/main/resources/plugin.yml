@@ -1,0 +1,17 @@
+name: Ezblocks
+version: @version@
+main: me.clip.ezblocks.Ezblocks
+api-version: 1.13
+softdepend: [TokenEnchant, AutoSell]
+authors: [extended_clip, katsumag, BomBardyGamer]
+description: Count players blocks broken
+permissions:
+  ezblocks.check:
+    description: access to check others blocks broken by command
+    default: op
+  ezblocks.pickaxecounter:
+    description: ability to have a pickaxe counter
+    default: op
+  ezblocks.admin:
+    description: access to admin commands
+    default: op
