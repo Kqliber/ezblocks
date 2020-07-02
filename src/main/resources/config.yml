@@ -1,6 +1,24 @@
-#DATABASE INFO
-url: localhost
-port: 3306
-name: minecraft
-user: test
-password: test
+# EZBlocks configuration file
+
+sql:
+
+  # Supported drivers: MySQL, MariaDB, H2 and PostgreSQL.
+  # Use H2 for flat-file storage (default)
+  driver: H2
+
+  address: localhost:3306
+  database: ezblocks
+  username: root
+  password: ''
+
+# Hikari connection pool settings
+pool:
+
+  # Maximum concurrent connections
+  max_connections: 10
+
+  # Connection timeout, in milliseconds
+  timeout: 30000 # 30 seconds
+
+  # Idle timeout, in milliseconds
+  idle_timeout: 60000 # 1 minute

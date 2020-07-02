@@ -1,10 +1,10 @@
-name: Ezblocks
+name: EZBlocks
 version: @version@
-main: me.clip.ezblocks.Ezblocks
-api-version: 1.13
-softdepend: [TokenEnchant, AutoSell]
+main: me.clip.ezblocks.EZBlocks
+# softdepend: [TokenEnchant, AutoSell] TODO: Add the hooks for these dependencies
 authors: [extended_clip, katsumag, BomBardyGamer]
 description: Count players blocks broken
+
 permissions:
   ezblocks.check:
     description: access to check others blocks broken by command
