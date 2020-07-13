@@ -18,11 +18,16 @@ repositories {
     maven {
         url 'https://papermc.io/repo/repository/maven-public/'
     }
+
+    maven {
+        url 'https://raw.githubusercontent.com/TeamVK/maven-repository/master/release/'
+    }
 }
 
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     compileOnly 'com.destroystokyo.paper:paper-api:1.13-R0.1-SNAPSHOT'
+    compile group: 'com.vk2gpz.tokenenchant', name: 'TokenEnchantAPI', version: '17.1.5'
 
     def exposedVersion = '0.24.1'
     implementation 'org.jetbrains.exposed:exposed-core:' + exposedVersion
@@ -54,4 +59,5 @@ compileTestKotlin {
 
 shadowJar {
     archiveFileName.set("EZBlocks-${project.version}.jar")
+    relocate 'kotlin', 'me.clip.ezblocks' //switch to PDM at some point
 }

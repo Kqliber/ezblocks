@@ -4,8 +4,8 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
+import me.clip.ezblocks.hooks.TokenEnchant
 import me.mattstudios.mf.base.CommandManager
-import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.java.JavaPlugin
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -16,6 +16,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
  *
  * @author Callum Seabrook
  */
+
 class EZBlocks : JavaPlugin() {
 
     private var database: Database? = null
@@ -23,6 +24,12 @@ class EZBlocks : JavaPlugin() {
     override fun onEnable() {
         instance = this
         saveDefaultConfig()
+
+        //register commands using MF
+        val commandManager = CommandManager(this)
+        commandManager.register(EZBlocksCommand(this))
+
+        server.pluginManager.registerEvents(TokenEnchant(), this)
 
         val dataSource = createDataSource()
 

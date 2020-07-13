@@ -22,3 +22,14 @@ pool:
 
   # Idle timeout, in milliseconds
   idle_timeout: 60000 # 1 minute
+
+ # Hooks for other plugins
+hooks:
+
+  #allow exploded blocks to be counted
+  tokenenchant: false
+
+# Blacklist blocks from being counted in blocks mined statistics and pickaxe counter
+# materials can be found here for 1.16: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+excluded_blocks:
+  - DIRT
