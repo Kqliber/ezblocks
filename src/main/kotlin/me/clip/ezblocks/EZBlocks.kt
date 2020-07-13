@@ -4,7 +4,6 @@ import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
-import me.clip.ezblocks.hooks.TokenEnchant
 import me.mattstudios.mf.base.CommandManager
 import org.bukkit.plugin.java.JavaPlugin
 import org.jetbrains.exposed.sql.Database
@@ -16,20 +15,12 @@ import org.jetbrains.exposed.sql.transactions.transaction
  *
  * @author Callum Seabrook
  */
-
 class EZBlocks : JavaPlugin() {
 
     private var database: Database? = null
 
     override fun onEnable() {
-        instance = this
         saveDefaultConfig()
-
-        //register commands using MF
-        val commandManager = CommandManager(this)
-        commandManager.register(EZBlocksCommand(this))
-
-        server.pluginManager.registerEvents(TokenEnchant(), this)
 
         val dataSource = createDataSource()
 
@@ -90,9 +81,21 @@ class EZBlocks : JavaPlugin() {
         return HikariDataSource(config)
     }
 
-    companion object {
+    /**
+     * Gets the value of the specified key in config.yml. Uses reified to allow for
+     * getting different types with the same method. Again, really hacky method but
+     * it works.
+     *
+     * @param key the key to find in the configuration
+     * @return the value of the specified key, or the default value of that key in
+     *         the default config.yml if the value was null.
+     *
+     * @author Callum Seabrook
+     */
+    private inline fun <reified T> getValue(key: String) = config.get(key) as? T
+            ?: config.defaults.get(key) as T
 
-        lateinit var instance: EZBlocks
+    companion object {
 
         /**
          * A list of supported drivers, excluding H2 as this is used in setting the
@@ -110,17 +113,3 @@ class EZBlocks : JavaPlugin() {
         )
     }
 }
-
-/**
- * Gets the value of the specified key in config.yml. Uses reified to allow for
- * getting different types with the same method. Again, really hacky method but
- * it works.
- *
- * @param key the key to find in the configuration
- * @return the value of the specified key, or the default value of that key in
- *         the default config.yml if the value was null.
- *
- * @author Callum Seabrook
- */
-inline fun <reified T> getValue(key: String) = EZBlocks.instance.config.get(key) as? T
-        ?: EZBlocks.instance.config.get(key) as T
