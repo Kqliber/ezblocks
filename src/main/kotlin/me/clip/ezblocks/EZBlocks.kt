@@ -2,6 +2,7 @@ package me.clip.ezblocks
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import me.bristermitten.pdm.PluginDependencyManager
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
 import me.mattstudios.mf.base.CommandManager
@@ -22,6 +23,10 @@ class EZBlocks : JavaPlugin() {
     override fun onEnable() {
         instance = this
         saveDefaultConfig()
+
+        // load all dependencies at runtime instead of shading
+        val dependencyManager = PluginDependencyManager(this)
+        dependencyManager.loadAllDependencies()
 
         val commandManager = CommandManager(this)
         commandManager.register(EZBlocksCommand(this))
@@ -119,4 +124,3 @@ class EZBlocks : JavaPlugin() {
  */
 inline fun <reified T> getValue(key: String) = EZBlocks.instance.config.get(key) as? T
         ?: EZBlocks.instance.config.defaults[key] as T
-
