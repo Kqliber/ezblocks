@@ -26,7 +26,7 @@ class EZBlocks : JavaPlugin() {
 
         // load all dependencies at runtime instead of shading
         val dependencyManager = PluginDependencyManager(this)
-        dependencyManager.loadAllDependencies()
+        dependencyManager.loadAllDependencies().join()
 
         val commandManager = CommandManager(this)
         commandManager.register(EZBlocksCommand(this))
