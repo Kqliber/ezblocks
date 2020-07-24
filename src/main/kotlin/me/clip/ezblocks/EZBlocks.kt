@@ -123,4 +123,4 @@ class EZBlocks : JavaPlugin() {
  * @author Callum Seabrook
  */
 inline fun <reified T> getValue(key: String) = EZBlocks.instance.config.get(key) as? T
-        ?: EZBlocks.instance.config.defaults[key] as T
+        ?: EZBlocks.instance.config.defaults?.get(key) as T
