@@ -1,4 +1,4 @@
-package me.clip.ezblocks.hooks
+package me.clip.ezblocks.listeners
 
 import org.bukkit.Material
 import org.bukkit.event.Listener
@@ -12,26 +12,24 @@ import me.clip.ezblocks.getValue
 
 /**
  * Hooks into TokenEnchant and counts the exploded blocks using TEBlockExplodeEvent.
- * This will exclude any blocks from being counted if the user specifies materials to be
- * blacklisted.
  *
  * @author Kaliber
  */
 
 class TokenEnchant : Listener {
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun onBlockExplode(event: TEBlockExplodeEvent) {
-        var blockCount = getBlocksPerProcess() // get amount of exploded blocks
+        var blockCounter = getBlocksPerProcess() // get amount of exploded blocks
         val excludedBlocks = getValue<List<String>>("excluded_blocks").map { Material.getMaterial(it) }
         val blockList = event.blockList() // get materials that are exploded
 
         blockList.forEach {
             if (it.blockData.material in excludedBlocks) {
-                blockCount--
+                blockCounter--
             }
         }
 
-        // TODO: add blockCount to the player's blocks mined statistic in database
+        // TODO: add blockCounter to the player's blocks mined statistic in database
     }
 }
