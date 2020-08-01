@@ -57,7 +57,7 @@ compileTestKotlin {
 }
 
 shadowJar {
-    archiveFileName.set("EZBlocks-${project.version}.jar")
+    archiveFileName = "EZBlocks-${project.version}.jar"
 }
 
 jar.dependsOn project.tasks.getByName('pdm')
