@@ -21,12 +21,16 @@ repositories {
     maven {
         url 'https://raw.githubusercontent.com/TeamVK/maven-repository/master/release/'
     }
+    maven {
+        url 'http://repo.extendedclip.com/content/repositories/placeholderapi/'
+    }
 }
 
 dependencies {
     pdm 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.1-R0.1-SNAPSHOT'
-    compile group: 'com.vk2gpz.tokenenchant', name: 'TokenEnchantAPI', version: '17.1.5'
+    compileOnly 'com.vk2gpz.tokenenchant:TokenEnchantAPI:17.1.5'
+    compileOnly 'me.clip:placeholderapi:2.10.9'
 
     def exposedVersion = '0.24.1'
     pdm 'org.jetbrains.exposed:exposed-core:' + exposedVersion
