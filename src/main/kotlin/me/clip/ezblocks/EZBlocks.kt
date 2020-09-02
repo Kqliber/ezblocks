@@ -5,6 +5,8 @@ import com.zaxxer.hikari.HikariDataSource
 import me.bristermitten.pdm.PluginDependencyManager
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
+import me.clip.ezblocks.listeners.BlockBreak
+import me.clip.ezblocks.listeners.TokenEnchant
 import me.mattstudios.mf.base.CommandManager
 import org.bukkit.plugin.java.JavaPlugin
 import org.jetbrains.exposed.sql.Database
@@ -31,6 +33,9 @@ class EZBlocks : JavaPlugin() {
         val commandManager = CommandManager(this)
         commandManager.register(EZBlocksCommand(this))
 
+        server.pluginManager.registerEvents(BlockBreak(), this)
+        server.pluginManager.registerEvents(TokenEnchant(), this)
+
         val dataSource = createDataSource()
 
         if (dataSource == null) {
@@ -42,8 +47,7 @@ class EZBlocks : JavaPlugin() {
         database = Database.connect(dataSource)
 
         transaction { SchemaUtils.createMissingTablesAndColumns(BlockDataTable) }
-
-        CommandManager(this).register(EZBlocksCommand(this))
+        
     }
 
     override fun onDisable() {
