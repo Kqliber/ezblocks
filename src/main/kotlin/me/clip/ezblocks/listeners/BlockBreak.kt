@@ -17,8 +17,8 @@ import org.bukkit.event.block.BlockBreakEvent
 class BlockBreak : Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    fun onBlockBreak(event: BlockBreakEvent) {
-        val block = event.block.blockData.material
+    fun BlockBreakEvent.onBlockBreak() {
+        val block = block.blockData.material
         val excludedBlocks = getValue<List<String>>("excluded_blocks").map { Material.getMaterial(it) }
         if (block in excludedBlocks) {
             return

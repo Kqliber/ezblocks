@@ -19,10 +19,10 @@ import me.clip.ezblocks.getValue
 class TokenEnchant : Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    fun onBlockExplode(event: TEBlockExplodeEvent) {
+    fun TEBlockExplodeEvent.onBlockExplode() {
         var blockCounter = getBlocksPerProcess() // get amount of exploded blocks
         val excludedBlocks = getValue<List<String>>("excluded_blocks").map { Material.getMaterial(it) }
-        val blockList = event.blockList() // get materials that are exploded
+        val blockList = blockList() // get materials that are exploded
 
         blockList.forEach {
             if (it.blockData.material in excludedBlocks) {
