@@ -2,6 +2,7 @@ package me.clip.ezblocks
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import me.bristermitten.pdm.PDMBuilder
 import me.bristermitten.pdm.PluginDependencyManager
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
@@ -22,13 +23,14 @@ class EZBlocks : JavaPlugin() {
 
     private var database: Database? = null
 
+    override fun onLoad() {
+        // load all dependencies at runtime instead of shading
+        PDMBuilder(this).build().loadAllDependencies().join()
+    }
+
     override fun onEnable() {
         instance = this
         saveDefaultConfig()
-
-        // load all dependencies at runtime instead of shading
-        val dependencyManager = PluginDependencyManager(this)
-        dependencyManager.loadAllDependencies().join()
 
         val commandManager = CommandManager(this)
         commandManager.register(EZBlocksCommand(this))
@@ -47,7 +49,7 @@ class EZBlocks : JavaPlugin() {
         database = Database.connect(dataSource)
 
         transaction { SchemaUtils.createMissingTablesAndColumns(BlockDataTable) }
-        
+
     }
 
     override fun onDisable() {
