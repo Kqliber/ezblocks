@@ -33,3 +33,10 @@ hooks:
 # materials can be found here for 1.16: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 excluded_blocks:
   - DIRT
+
+# Blacklist worlds from being counted in blocks mined statistics and pickaxe counter
+excluded_worlds:
+  - world_the_end
+
+messages:
+  blocks_broken: '&fYou have broke &b%blocks% &fblocks!'
