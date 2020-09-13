@@ -1,8 +1,8 @@
 package me.clip.ezblocks.listeners
 
-import me.clip.ezblocks.getValue
+import me.clip.ezblocks.handlers.BlacklistHandler
+import me.clip.ezblocks.handlers.PlayerDataHandler
 
-import org.bukkit.Material
 import org.bukkit.event.Listener
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -14,17 +14,16 @@ import org.bukkit.event.block.BlockBreakEvent
  * @author Kaliber
  */
 
-class BlockBreak : Listener {
+class BlockBreakListener : Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun BlockBreakEvent.onBlockBreak() {
         val block = block.blockData.material
-        val excludedBlocks = getValue<List<String>>("excluded_blocks").map { Material.getMaterial(it) }
-        if (block in excludedBlocks) {
+        if (!BlacklistHandler().isAllowedBlock(block) && !BlacklistHandler().isAllowedWorld(player)) {
             return
         }
-        val blockCounter = 1
-        // TODO: add blockCounter to the player's blocks mined statistic in database
+
+        PlayerDataHandler().addBlocks(player.uniqueId, 1)
     }
 
 }
