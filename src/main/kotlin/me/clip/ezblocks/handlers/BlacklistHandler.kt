@@ -5,6 +5,12 @@ import me.clip.ezblocks.getValue
 import org.bukkit.Material
 import org.bukkit.entity.Player
 
+/**
+ * Handler for blacklists using the config.yml.
+ * Includes world and block blacklists.
+ * @author Kaliber
+ */
+
 class BlacklistHandler {
 
     fun isAllowedBlock(material: Material): Boolean {

@@ -13,6 +13,12 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.command.CommandSender
 
+/**
+ * /blocks command
+ * supports a player arg for other people
+ * @author Kaliber
+ */
+
 @Command("blocks")
 class BlockCounterCommand : CommandBase() {
 
