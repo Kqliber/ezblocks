@@ -3,11 +3,11 @@ package me.clip.ezblocks
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import me.bristermitten.pdm.PDMBuilder
-import me.bristermitten.pdm.PluginDependencyManager
+import me.clip.ezblocks.commands.BlockCounterCommand
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
-import me.clip.ezblocks.listeners.BlockBreak
-import me.clip.ezblocks.listeners.TokenEnchant
+import me.clip.ezblocks.listeners.BlockBreakListener
+import me.clip.ezblocks.listeners.TEListener
 import me.mattstudios.mf.base.CommandManager
 import org.bukkit.plugin.java.JavaPlugin
 import org.jetbrains.exposed.sql.Database
@@ -33,10 +33,10 @@ class EZBlocks : JavaPlugin() {
         saveDefaultConfig()
 
         val commandManager = CommandManager(this)
-        commandManager.register(EZBlocksCommand(this))
+        commandManager.register(EZBlocksCommand(this), BlockCounterCommand())
 
-        server.pluginManager.registerEvents(BlockBreak(), this)
-        server.pluginManager.registerEvents(TokenEnchant(), this)
+        server.pluginManager.registerEvents(BlockBreakListener(), this)
+        server.pluginManager.registerEvents(TEListener(), this)
 
         val dataSource = createDataSource()
 
