@@ -1,9 +1,8 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.3.72'
-    id 'com.github.johnrengelman.shadow' version '6.0.0'
-    id 'me.bristermitten.pdm' version '0.0.27'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.0'
+    id 'me.bristermitten.pdm' version '0.0.28'
     id 'application'
 }
 
@@ -22,13 +21,13 @@ repositories {
         url 'https://raw.githubusercontent.com/TeamVK/maven-repository/master/release/'
     }
     maven {
-        url 'http://repo.extendedclip.com/content/repositories/placeholderapi/'
+        url 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
     }
 }
 
 dependencies {
-    pdm 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-    compileOnly 'com.destroystokyo.paper:paper-api:1.16.1-R0.1-SNAPSHOT'
+    pdm 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.0'
+    compileOnly 'com.destroystokyo.paper:paper-api:1.16.3-R0.1-SNAPSHOT'
     compileOnly 'com.vk2gpz.tokenenchant:TokenEnchantAPI:17.1.5'
     compileOnly 'me.clip:placeholderapi:2.10.9'
 
@@ -56,12 +55,5 @@ compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
-}
-
-shadowJar {
-    archiveFileName = "EZBlocks-${project.version}.jar"
-}
-
+jar.archiveFileName = "EZBlocks-${version}.jar"
 jar.dependsOn project.tasks.getByName('pdm')
