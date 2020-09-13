@@ -6,7 +6,6 @@ import me.mattstudios.mf.annotations.Alias
 import me.mattstudios.mf.annotations.Command
 import me.mattstudios.mf.annotations.Default
 import me.mattstudios.mf.base.CommandBase
-import net.md_5.bungee.api.ChatColor
 import net.md_5.bungee.api.chat.ClickEvent
 import net.md_5.bungee.api.chat.ComponentBuilder
 import net.md_5.bungee.api.chat.TextComponent
@@ -28,8 +27,7 @@ class EZBlocksCommand(private val plugin: EZBlocks) : CommandBase() {
             &7Created by: &cextended_clip
             &7Maintained by 
         """.trimIndent().colourise())
-                .color(ChatColor.RED)
-                .append(TextComponent("Prevarinite")
+                .append(TextComponent("&cPrevarinite".colourise())
                         .apply {
                             clickEvent = ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.prevarinite.com")
                         })
