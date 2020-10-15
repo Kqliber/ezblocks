@@ -6,6 +6,7 @@ import me.bristermitten.pdm.PDMBuilder
 import me.clip.ezblocks.commands.BlockCounterCommand
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
+import me.clip.ezblocks.handlers.RewardsHandler
 import me.clip.ezblocks.listeners.BlockBreakListener
 import me.clip.ezblocks.listeners.TEListener
 import me.mattstudios.mf.base.CommandManager
@@ -22,6 +23,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class EZBlocks : JavaPlugin() {
 
     private var database: Database? = null
+    val rewardsHandler = RewardsHandler(this)
 
     override fun onLoad() {
         // load all dependencies at runtime instead of shading

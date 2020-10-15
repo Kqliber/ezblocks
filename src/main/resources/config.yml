@@ -40,3 +40,17 @@ excluded_worlds:
 
 messages:
   blocks_broken: '&fYou have broke &b%blocks% &fblocks!'
+
+rewards:
+  global_rewards:
+    default:
+      blocks_needed: 100 # 100 blocks are needed to execute these rewards
+      commands:
+        - '[message] &aYou have mined 100 blocks!'
+        - '[command] eco give %player_name% 10'
+  interval_rewards:
+    default:
+      blocks_needed: 100 # every 100 blocks rewards are given
+      commands:
+        - '[give] DIAMOND 1'
+        - '[  '

@@ -36,6 +36,6 @@ class BlockCounterCommand : CommandBase() {
         val player2 = Bukkit.getOfflinePlayer(playerArg) as Player
         val message = getValue<String>("messages.blocks_broken").replace("%blocks%", "${data.getBlocks(player2)}")
 
-        player.sendTranslatedMessage(player2, message)
+        player.sendTranslatedMessage(player, message)
     }
 }
