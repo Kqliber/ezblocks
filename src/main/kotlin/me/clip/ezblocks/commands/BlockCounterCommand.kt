@@ -1,8 +1,8 @@
 package me.clip.ezblocks.commands
 
+import me.clip.ezblocks.EZBlocks
 import me.clip.ezblocks.getValue
-import me.clip.ezblocks.sendTranslatedMessage
-import me.clip.ezblocks.handlers.PlayerDataHandler
+import me.clip.ezblocks.message
 
 import me.mattstudios.mf.base.CommandBase
 import me.mattstudios.mf.annotations.Command
@@ -20,22 +20,23 @@ import org.bukkit.command.CommandSender
  */
 
 @Command("blocks")
-class BlockCounterCommand : CommandBase() {
+class BlockCounterCommand(private val plugin: EZBlocks) : CommandBase() {
 
     @Default
-    fun blocksCommand(sender: CommandSender, @Optional playerArg: String?) {
-        val player = sender as Player
-        val data = PlayerDataHandler()
-
-        if (playerArg == null) {
-            val message = getValue<String>("messages.blocks_broken").replace("%blocks%", "${data.getBlocks(player)}")
-
-            return player.sendTranslatedMessage(player, message)
+    fun blocksCommand(sender: CommandSender, @Optional arg: String?) {
+        if (sender !is Player) {
+            return sender.sendMessage("Player Command Only.")
         }
 
-        val player2 = Bukkit.getOfflinePlayer(playerArg) as Player
-        val message = getValue<String>("messages.blocks_broken").replace("%blocks%", "${data.getBlocks(player2)}")
+        val users = plugin.usersHandler
+        if (arg == null) {
+            val message = getValue<String>("messages.blocks_broken").replace("%blocks%", "${users[sender].broken}")
+            return sender.message(sender, message)
+        }
 
-        player.sendTranslatedMessage(player, message)
+        val playerArg = Bukkit.getOfflinePlayer(arg)
+        val message = getValue<String>("messages.blocks_broken").replace("%blocks%", "${users[playerArg].broken}")
+
+        sender.message(sender, message)
     }
 }

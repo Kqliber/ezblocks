@@ -1,6 +1,7 @@
 name: EZBlocks
 version: @version@
 main: me.clip.ezblocks.EZBlocks
+depend: [PlaceholderAPI]
 softdepend: [TokenEnchant]
 authors: [extended_clip, katsumag, BomBardyGamer, Kaliber]
 description: "Count player's blocks broken"

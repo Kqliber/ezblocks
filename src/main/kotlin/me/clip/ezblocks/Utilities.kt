@@ -38,7 +38,7 @@ fun String.colourise(): String {
 
 fun setMessage(player: OfflinePlayer, message: String) = PlaceholderAPI.setPlaceholders(player, message.colourise())
 
-fun Player.sendTranslatedMessage(player: Player, msg: String) {
+fun Player.message(player: Player, msg: String) {
     val message = setMessage(player, msg)
 
     if (USE_HEX) {

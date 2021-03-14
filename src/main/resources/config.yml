@@ -38,6 +38,10 @@ excluded_blocks:
 excluded_worlds:
   - world_the_end
 
+track_stats_below_y:
+  enabled: true
+  y: 64
+
 messages:
   blocks_broken: '&fYou have broke &b%blocks% &fblocks!'
 

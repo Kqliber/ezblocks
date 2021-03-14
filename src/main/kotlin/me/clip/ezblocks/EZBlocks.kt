@@ -6,7 +6,7 @@ import me.bristermitten.pdm.PDMBuilder
 import me.clip.ezblocks.commands.BlockCounterCommand
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
-import me.clip.ezblocks.handlers.RewardsHandler
+import me.clip.ezblocks.handlers.UsersHandler
 import me.clip.ezblocks.listeners.BlockBreakListener
 import me.clip.ezblocks.listeners.TEListener
 import me.mattstudios.mf.base.CommandManager
@@ -23,7 +23,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class EZBlocks : JavaPlugin() {
 
     private var database: Database? = null
-    val rewardsHandler = RewardsHandler(this)
+    val usersHandler = UsersHandler()
 
     override fun onLoad() {
         // load all dependencies at runtime instead of shading
@@ -35,10 +35,12 @@ class EZBlocks : JavaPlugin() {
         saveDefaultConfig()
 
         val commandManager = CommandManager(this)
-        commandManager.register(EZBlocksCommand(this), BlockCounterCommand())
+        commandManager.register(EZBlocksCommand(this), BlockCounterCommand(this))
 
-        server.pluginManager.registerEvents(BlockBreakListener(), this)
-        server.pluginManager.registerEvents(TEListener(), this)
+        server.pluginManager.registerEvents(BlockBreakListener(this), this)
+        if (server.pluginManager.getPlugin("TokenEnchant") != null) {
+            server.pluginManager.registerEvents(TEListener(this), this)
+        }
 
         val dataSource = createDataSource()
 
