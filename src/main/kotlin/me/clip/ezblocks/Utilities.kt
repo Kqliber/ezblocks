@@ -36,7 +36,7 @@ fun String.colourise(): String {
     return ChatColor.translateAlternateColorCodes('&', translation)
 }
 
-fun setMessage(player: OfflinePlayer, message: String) = PlaceholderAPI.setPlaceholders(player, message.colourise())
+private fun setMessage(player: OfflinePlayer, message: String) = PlaceholderAPI.setPlaceholders(player, message.colourise())
 
 fun Player.message(player: Player, msg: String) {
     val message = setMessage(player, msg)
