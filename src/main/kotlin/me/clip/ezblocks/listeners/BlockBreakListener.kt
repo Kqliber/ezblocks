@@ -20,12 +20,11 @@ class BlockBreakListener(private val plugin: EZBlocks) : Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     fun BlockBreakEvent.onBlockBreak() {
         val block = block.blockData.material
-        if (!BlacklistHandler().isBlacklisted(player, block)) {
+        if (BlacklistHandler().isBlacklisted(player, block)) {
             return
         }
 
         plugin.usersHandler[player.uniqueId].broken++
         RewardsHandler(plugin).runAllRewards(player)
     }
-
 }
