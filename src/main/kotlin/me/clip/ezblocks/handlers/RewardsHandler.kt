@@ -17,9 +17,9 @@ class RewardsHandler(private val plugin: EZBlocks) {
 
     private fun runGlobalRewards(player: Player) {
         val user = plugin.usersHandler[player]
-        val blocksNeeded = getValue<Int>("rewards.global_rewards.blocks_needed")
+        val blocksNeeded = getValue<Int>("rewards.global_rewards.default.blocks_needed")
 
-        if (user.broken == blocksNeeded) {
+        if (user.broken != blocksNeeded) {
             return
         }
 
