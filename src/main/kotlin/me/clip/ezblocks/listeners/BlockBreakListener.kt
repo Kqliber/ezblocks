@@ -2,6 +2,7 @@ package me.clip.ezblocks.listeners
 
 import me.clip.ezblocks.EZBlocks
 import me.clip.ezblocks.handlers.BlacklistHandler
+import me.clip.ezblocks.handlers.RewardsHandler
 
 import org.bukkit.event.Listener
 import org.bukkit.event.EventHandler
@@ -24,6 +25,7 @@ class BlockBreakListener(private val plugin: EZBlocks) : Listener {
         }
 
         plugin.usersHandler[player.uniqueId].broken++
+        RewardsHandler(plugin).runAllRewards(player)
     }
 
 }
