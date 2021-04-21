@@ -14,33 +14,35 @@ import org.bukkit.entity.Player
 class BlacklistHandler {
 
     fun isBlacklisted(player: Player, material: Material): Boolean {
-        if (isAllowedBlock(material) && isAllowedWorld(player) && isAllowedHeight(player)) {
+        if (isBlacklistedBlock(material) || isBlacklistedWorld(player) || isBlacklistedHeight(player)) {
+            return true
+        }
+        return false
+    }
+
+    fun isBlacklistedBlock(material: Material): Boolean {
+        val blacklistedBlocks = getValue<List<String>>("excluded_blocks").map(Material::getMaterial)
+        if (material !in blacklistedBlocks) {
             return false
         }
         return true
     }
 
-    fun isAllowedBlock(material: Material): Boolean {
-        val blacklistedBlocks = getValue<List<String>>("excluded_blocks").map(Material::getMaterial)
-        if (material !in blacklistedBlocks) {
-            return true
-        }
-        return false
-    }
-
-    fun isAllowedWorld(player: Player): Boolean {
+    fun isBlacklistedWorld(player: Player): Boolean {
         val blacklistedWorlds = getValue<List<String>>("excluded_worlds")
         if (player.world.name !in blacklistedWorlds) {
-            return true
+            return false
         }
-        return false
+        return true
     }
 
-    fun isAllowedHeight(player: Player): Boolean {
-
-        if (!getValue<Boolean>("track_stats_below_y.enabled") && player.location.blockY <= getValue<Int>("track_stats_below_y.y")) {
-            return true
+    fun isBlacklistedHeight(player: Player): Boolean {
+        if (!getValue<Boolean>("track_stats_below_y.enabled")) {
+            return false
         }
-        return false
+        if (player.location.y <= getValue<Int>("track_stats_below_y.y")) {
+            return false
+        }
+        return true
     }
 }
