@@ -21,7 +21,7 @@ class BlacklistHandler {
     }
 
     fun isAllowedBlock(material: Material): Boolean {
-        val blacklistedBlocks = getValue<List<String>>("excluded_blocks").map { Material.getMaterial(it) }
+        val blacklistedBlocks = getValue<List<String>>("excluded_blocks").map(Material::getMaterial)
         if (material !in blacklistedBlocks) {
             return true
         }
