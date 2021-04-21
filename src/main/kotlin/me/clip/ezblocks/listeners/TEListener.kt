@@ -22,11 +22,11 @@ class TEListener(private val plugin: EZBlocks) : Listener {
     fun TEBlockExplodeEvent.onBlockExplode() {
         val blockList = blockList() // get materials that are exploded
         val blacklistHandler = BlacklistHandler()
-        if (!blacklistHandler.isAllowedWorld(player) || !blacklistHandler.isAllowedHeight(player)) {
+        if (blacklistHandler.isBlacklistedWorld(player) || blacklistHandler.isBlacklistedHeight(player)) {
             return
         }
 
-        val counter = blockList.count { blacklistHandler.isAllowedBlock(it.type) } // amount of exploded blocks
+        val counter = blockList.count { !blacklistHandler.isBlacklistedBlock(it.type) } // amount of exploded blocks
 
         plugin.usersHandler[player.uniqueId].plus(counter)
     }
