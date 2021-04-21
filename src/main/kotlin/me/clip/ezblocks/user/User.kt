@@ -4,6 +4,10 @@ import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import java.util.UUID
 
+/**
+ * stores user data
+ * @author Kaliber
+ */
 data class User(val uuid: UUID, var broken: Int) {
 
     fun player(): OfflinePlayer {
