@@ -63,6 +63,5 @@ jar.dependsOn project.tasks.getByName('pdm')
 
 shadowJar {
     archiveFileName = "EZBlocks-${project.version}.jar"
-    relocate 'kotlin', 'me.clip.ezblocks.libs'
     minimize()
 }
