@@ -1,5 +1,6 @@
 name: EZBlocks
 version: @version@
+api-version: 1.13
 main: me.clip.ezblocks.EZBlocks
 depend: [PlaceholderAPI]
 softdepend: [TokenEnchant]
