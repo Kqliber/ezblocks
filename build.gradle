@@ -2,7 +2,6 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.5.0'
-    id 'me.bristermitten.pdm' version '0.0.28'
     id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
@@ -35,18 +34,18 @@ dependencies {
     compileOnly 'me.clip:placeholderapi:2.10.9'
 
     def exposedVersion = '0.24.1'
-    pdm 'org.jetbrains.exposed:exposed-core:' + exposedVersion
-    pdm 'org.jetbrains.exposed:exposed-dao:' + exposedVersion
-    pdm 'org.jetbrains.exposed:exposed-jdbc:' + exposedVersion
+    implementation 'org.jetbrains.exposed:exposed-core:' + exposedVersion
+    implementation 'org.jetbrains.exposed:exposed-dao:' + exposedVersion
+    implementation 'org.jetbrains.exposed:exposed-jdbc:' + exposedVersion
 
-    pdm 'com.zaxxer:HikariCP:3.4.5'
-    pdm 'org.mariadb.jdbc:mariadb-java-client:2.6.0'
-    pdm 'com.h2database:h2:1.4.200'
-    pdm 'mysql:mysql-connector-java:8.0.20'
-    pdm 'org.postgresql:postgresql:42.2.14'
+    implementation 'com.zaxxer:HikariCP:3.4.5'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.6.0'
+    implementation 'com.h2database:h2:1.4.200'
+    implementation 'mysql:mysql-connector-java:8.0.20'
+    implementation 'org.postgresql:postgresql:42.2.14'
 
-    pdm 'me.mattstudios.utils:matt-framework:1.3'
-    pdm 'com.github.iGabyTM:Util-Actions:1.0.4'
+    implementation 'me.mattstudios.utils:matt-framework:1.3'
+    implementation 'com.github.iGabyTM:Util-Actions:1.0.4'
 }
 
 processResources {
@@ -58,8 +57,6 @@ processResources {
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
-
-jar.dependsOn project.tasks.getByName('pdm')
 
 shadowJar {
     archiveFileName = "EZBlocks-${project.version}.jar"

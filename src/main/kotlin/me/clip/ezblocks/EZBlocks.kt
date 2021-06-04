@@ -2,7 +2,6 @@ package me.clip.ezblocks
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
-import me.bristermitten.pdm.PDMBuilder
 import me.clip.ezblocks.commands.BlockCounterCommand
 import me.clip.ezblocks.commands.EZBlocksCommand
 import me.clip.ezblocks.database.BlockDataTable
@@ -24,11 +23,6 @@ class EZBlocks : JavaPlugin() {
 
     private var database: Database? = null
     val usersHandler = UsersHandler()
-
-    override fun onLoad() {
-        // load all dependencies at runtime instead of shading
-        PDMBuilder(this).build().loadAllDependencies().join()
-    }
 
     override fun onEnable() {
         instance = this
