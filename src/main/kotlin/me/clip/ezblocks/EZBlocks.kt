@@ -67,9 +67,9 @@ class EZBlocks : JavaPlugin() {
         val config = HikariConfig().apply {
 
             // Database configuration
-            val driver = getValue<String>("sql.driver").toLowerCase()
+            val driver = getValue<String>("sql.driver").lowercase()
             val address = getValue<String>("sql.address")
-            val database = getValue<String>("sql.database").toLowerCase()
+            val database = getValue<String>("sql.database").lowercase()
 
             driverClassName = SUPPORTED_DRIVERS[driver]
 
