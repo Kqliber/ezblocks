@@ -31,17 +31,18 @@ class EZBlocks : JavaPlugin() {
         val commandManager = CommandManager(this)
         commandManager.register(EZBlocksCommand(this), BlockCounterCommand(this))
 
-        server.pluginManager.registerEvents(BlockBreakListener(this), this)
-        if (server.pluginManager.getPlugin("TokenEnchant") != null) {
-            server.pluginManager.registerEvents(TEListener(this), this)
+        val pluginManager = server.pluginManager
+
+        pluginManager.registerEvents(BlockBreakListener(this), this)
+        if (pluginManager.getPlugin("TokenEnchant") != null) {
+            pluginManager.registerEvents(TEListener(this), this)
         }
 
         val dataSource = createDataSource()
 
         if (dataSource == null) {
-            logger.severe("${getValue<String>("sql.driver")} not supported! Valid drivers are: MySQL, MariaDB, H2 or PostgreSQL")
-            server.pluginManager.disablePlugin(this)
-            return
+            logger.severe("Driver: '${getValue<String>("sql.driver")}' not supported! Valid drivers are: MySQL, MariaDB, H2 or PostgreSQL")
+            return pluginManager.disablePlugin(this)
         }
 
         database = Database.connect(dataSource)

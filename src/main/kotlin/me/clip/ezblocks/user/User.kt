@@ -10,13 +10,11 @@ import java.util.UUID
  */
 data class User(val uuid: UUID, var broken: Int) {
 
-    fun player(): OfflinePlayer {
-        return Bukkit.getOfflinePlayer(uuid)
-    }
+    val player: OfflinePlayer
+        get() = Bukkit.getOfflinePlayer(uuid)
 
-    fun name(): String {
-        return player().name ?: "" // probably wont be null anyway
-    }
+    val name: String
+        get() = player.name ?: ""
 
     fun plus(other: Int) {
         broken += other

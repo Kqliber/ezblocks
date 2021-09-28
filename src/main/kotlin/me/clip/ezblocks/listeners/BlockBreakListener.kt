@@ -23,7 +23,7 @@ class BlockBreakListener(private val plugin: EZBlocks) : Listener {
             return
         }
 
-        plugin.usersHandler[player.uniqueId].broken++
+        plugin.usersHandler[player].broken++
         RewardsHandler(plugin).runAllRewards(player)
     }
 }

@@ -1,7 +1,7 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.5.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.21'
     id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
@@ -9,7 +9,6 @@ group 'me.clip'
 version '2.0'
 
 repositories {
-    jcenter()
     mavenCentral()
 
     maven {
@@ -28,12 +27,12 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21'
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.4-R0.1-SNAPSHOT'
     compileOnly 'com.vk2gpz.tokenenchant:TokenEnchantAPI:17.1.5'
     compileOnly 'me.clip:placeholderapi:2.10.9'
 
-    def exposedVersion = '0.24.1'
+    def exposedVersion = '0.32.1'
     implementation 'org.jetbrains.exposed:exposed-core:' + exposedVersion
     implementation 'org.jetbrains.exposed:exposed-dao:' + exposedVersion
     implementation 'org.jetbrains.exposed:exposed-jdbc:' + exposedVersion
