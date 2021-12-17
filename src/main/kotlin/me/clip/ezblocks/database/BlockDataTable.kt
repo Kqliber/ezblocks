@@ -1,4 +1,5 @@
 package me.clip.ezblocks.database
+/*
 
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.id.EntityID
@@ -15,3 +16,4 @@ class BlockDataEntity(id: EntityID<Int>) : IntEntity(id) {
     var uuid by BlockDataTable.uuid
     var blocks by BlockDataTable.blocks
 }
+*/
