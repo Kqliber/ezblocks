@@ -16,7 +16,6 @@ import org.bukkit.plugin.java.JavaPlugin
 class EZBlocks : JavaPlugin() {
 
     val usersHandler = UsersHandler()
-    private lateinit var instance: EZBlocks
 
     override fun onEnable() {
         instance = this

@@ -29,6 +29,6 @@ class BlacklistHandler {
 
     fun isBlacklistedHeight(player: Player): Boolean {
         val trackY = "track_stats_below_y"
-        return getValue("$trackY.enabled") || player.location.y >= getValue<Int>("$trackY.y")
+        return getValue("$trackY.enabled") && player.location.y >= getValue<Int>("$trackY.y")
     }
 }
