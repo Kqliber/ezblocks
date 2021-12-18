@@ -1,7 +1,7 @@
 package me.clip.ezblocks.commands
 
 import me.clip.ezblocks.EZBlocks
-import me.clip.ezblocks.colourise
+import me.clip.ezblocks.color
 import me.mattstudios.mf.annotations.Alias
 import me.mattstudios.mf.annotations.Command
 import me.mattstudios.mf.annotations.Default
@@ -26,8 +26,8 @@ class EZBlocksCommand(private val plugin: EZBlocks) : CommandBase() {
             &c&lEZ&fBlocks &7version &f${plugin.description.version}
             &7Created by: &cextended_clip
             &7Maintained by 
-        """.trimIndent().colourise())
-                .append(TextComponent("&cPrevarinite".colourise())
+        """.trimIndent().color())
+                .append(TextComponent("&cPrevarinite".color())
                         .apply {
                             clickEvent = ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.prevarinite.com")
                         })

@@ -1,7 +1,7 @@
 package me.clip.ezblocks.handlers
 
 import me.clip.ezblocks.EZBlocks
-import me.clip.ezblocks.colourise
+import me.clip.ezblocks.color
 import me.clip.ezblocks.getValue
 import me.gabytm.util.actions.ActionManager
 import org.bukkit.entity.Player
@@ -23,7 +23,7 @@ class RewardsHandler(private val plugin: EZBlocks) {
             return
         }
 
-        val commands = getValue<List<String>>("rewards.global_rewards.default.commands").map(String::colourise)
+        val commands = getValue<List<String>>("rewards.global_rewards.default.commands").map(String::color)
         actionManager.execute(player, commands)
     }
 
@@ -35,7 +35,7 @@ class RewardsHandler(private val plugin: EZBlocks) {
             return
         }
 
-        val commands = getValue<List<String>>("rewards.interval_rewards.default.commands").map(String::colourise)
+        val commands = getValue<List<String>>("rewards.interval_rewards.default.commands").map(String::color)
         actionManager.execute(player, commands)
     }
 
